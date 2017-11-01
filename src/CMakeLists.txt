@@ -1,5 +1,5 @@
 file(GLOB HANDLER_SOURCE srcsax/*.cpp cpp/*.cpp)
-file(GLOB HANDLER_INCLUDE srcsax/*.hpp cpp/*.hpp)
+file(GLOB HANDLER_INCLUDE srcsax/*.h srcsax/*.hpp cpp/*.hpp)
 
 file(GLOB WINDOWS_SOURCE windows/*.cpp)
 file(GLOB WINDOWS_INCLUDE windows/*.hpp)
@@ -26,3 +26,6 @@ endmacro()
 build_lib(srcsax_static STATIC)
 build_lib(srcsax_shared SHARED)
 target_link_libraries(srcsax_shared PRIVATE ${LIBXML2_LIBRARIES})
+
+install(TARGETS srcsax_shared srcsax_static RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+install(FILES ${HANDLER_INCLUDE} DESTINATION include/srcsax)
